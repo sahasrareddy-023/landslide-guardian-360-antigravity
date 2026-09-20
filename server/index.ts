@@ -331,7 +331,14 @@ app.post('/api/demo/reset', (_req: Request, res: Response) => {
   res.json({ message: 'Simulation scenario reset to baseline', location: nh10 });
 });
 
+app.use(express.static('dist'));
+
+app.get('*', (_req: Request, res: Response) => {
+  res.sendFile(process.cwd() + '/dist/index.html');
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`[NER COMMAND] Landslide Guardian 360 API Server running on port ${PORT}`);
 });
+
 
